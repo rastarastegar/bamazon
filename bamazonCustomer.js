@@ -20,12 +20,14 @@ connection.connect(function (err) { // this is to connect via the  created  conn
 function runBamazon() {
     inquirer.prompt({
         name: "items",
-        type: "list",
+        type: "string",
         message: "Below is the list of all available items with price and available quantity",
-        chioces: [
-        ]
-    }).then(function (answer) {
-        var query = "SELECT * FROM bamazondb.products"
-    })
-}
 
+    }).then(function (answer) {
+        var query = "SELECT * FROM products"; // this is supposed to display all the table in the database 
+        connection.query(query, function (err, res) {
+            if (err) throw err;
+            console.log(res);
+        });
+    });
+};
